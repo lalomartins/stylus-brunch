@@ -9,7 +9,7 @@ function StylusCompiler(cfg) {
   if (cfg == null) cfg = {};
   this.rootPath = cfg.paths.root;
   this.config = (cfg.plugins && cfg.plugins.stylus) || {};
-  progeny = Progeny({
+  var progeny = Progeny({
     rootPath: this.rootPath
   });
   this.getDependencies = function(data, path, callback) {
