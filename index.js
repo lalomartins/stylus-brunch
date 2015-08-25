@@ -3,15 +3,18 @@
 var sysPath = require('path');
 var stylus = require('stylus');
 var nib = require('nib');
-var progeny = require('progeny');
+var Progeny = require('progeny');
 
 function StylusCompiler(cfg) {
   if (cfg == null) cfg = {};
   this.rootPath = cfg.paths.root;
   this.config = (cfg.plugins && cfg.plugins.stylus) || {};
-  this.getDependencies = progeny({
+  progeny = Progeny({
     rootPath: this.rootPath
   });
+  this.getDependencies = function(data, path, callback) {
+    return progeny(path, data, callback);
+  }
 }
 
 StylusCompiler.prototype.brunchPlugin = true;
